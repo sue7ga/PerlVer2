@@ -11,9 +11,10 @@ my $csv = Text::CSV->new({
 
 open(my $fh,'<:encoding(utf-8)','toukei.csv');
 
-my $info;
+my $infos = [];
 while(my $row = $csv->getline($fh)){
   next if $. == 1;
+  my $info = {};
   $info->{country} = $row->[0];
   $info->{1991} = $row->[1];
   $info->{1992} = $row->[2];
@@ -25,10 +26,11 @@ while(my $row = $csv->getline($fh)){
   $info->{1998} = $row->[8];
   $info->{1999} = $row->[9];
   $info->{2000} = $row->[7];
+  push @$infos,\$info;
 }
 
 use Data::Dumper;
-print Dumper $info;
+print Dumper $infos;
 
 __DATA__
 ,1991年,1992年,1993年,1994年,1995年,1996年,1997年,1998年,1999年,2000年
