@@ -9,11 +9,18 @@ my $csv = Text::CSV->new({
    binary  => 1,
 });
 
-open(my $fh,'<:encoding(utf-8)','toukei.csv');
+use Data::Dumper;
 
+my @era = qw/country 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000/;
+open(my $fh,'<:encoding(utf-8)','toukei.csv');
 while(my $row = $csv->getline($fh)){
-  print Encode::encode('utf-8',@{$row}),"\n";
+  my %field;
+  for(my $count = 0 ; $count <= $#era;$count++){
+     $field{$era[$count]} = $$row[$count];
+  }
+  print Encode::encode('utf-8',$field{'1999'}),"\n";
 }
+
 
 
 __DATA__
