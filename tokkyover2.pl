@@ -28,10 +28,8 @@ while(my $row = $csv->getline($fh)){
   push @$infos,\$info;
 }
 
-
-
 use Data::Dumper;
-print  $$infos[0]{country}{1991};
+print  $infos->[0]->{'日本'}->{1991};
 
 
 __DATA__

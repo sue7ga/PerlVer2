@@ -9,21 +9,26 @@ my $csv = Text::CSV->new({
    binary  => 1,
 });
 
-use Data::Dumper;
-
-my @era = qw/country 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000/;
-
 open(my $fh,'<:encoding(utf-8)','toukei.csv');
 
+my $info;
 while(my $row = $csv->getline($fh)){
-  my %field;
-  for(my $count = 0 ; $count <= $#era;$count++){
-     $field{$era[$count]} = $$row[$count];
-  }
-  print Encode::encode('utf-8',$field{'1999'}),"\n";
+  next if $. == 1;
+  $info->{country} = $row->[0];
+  $info->{1991} = $row->[1];
+  $info->{1992} = $row->[2];$info->{1997} = $row->[7];
+  $info->{1993} = $row->[3];
+  $info->{1994} = $row->[4];
+  $info->{1995} = $row->[5];
+  $info->{1996} = $row->[6];
+  $info->{1997} = $row->[7];
+  $info->{1998} = $row->[8];
+  $info->{1999} = $row->[9];
+  $info->{2000} = $row->[7];
 }
 
-
+use Data::Dumper;
+print Dumper $info;
 
 __DATA__
 ,1991年,1992年,1993年,1994年,1995年,1996年,1997年,1998年,1999年,2000年
