@@ -15,22 +15,24 @@ my $infos = [];
 while(my $row = $csv->getline($fh)){
   next if $. == 1;
   my $info = {};
-  $info->{country} = $row->[0];
-  $info->{1991} = $row->[1];
-  $info->{1992} = $row->[2];
-  $info->{1993} = $row->[3];
-  $info->{1994} = $row->[4];
-  $info->{1995} = $row->[5];
-  $info->{1996} = $row->[6];
-  $info->{1997} = $row->[7];
-  $info->{1998} = $row->[8];
-  $info->{1999} = $row->[9];
-  $info->{2000} = $row->[7];
+  $info->{$row->[0]}{1991} = $row->[1];
+  $info->{$row->[0]}{1992} = $row->[2];
+  $info->{$row->[0]}{1993} = $row->[3];
+  $info->{$row->[0]}{1994} = $row->[4];
+  $info->{$row->[0]}{1995} = $row->[5];
+  $info->{$row->[0]}{1996} = $row->[6];
+  $info->{$row->[0]}{1997} = $row->[7];
+  $info->{$row->[0]}{1998} = $row->[8];
+  $info->{$row->[0]}{1999} = $row->[9];
+  $info->{$row->[0]}{2000} = $row->[10];
   push @$infos,\$info;
 }
 
+
+
 use Data::Dumper;
-print Dumper $infos;
+print  $$infos[0]{country}{1991};
+
 
 __DATA__
 ,1991年,1992年,1993年,1994年,1995年,1996年,1997年,1998年,1999年,2000年
