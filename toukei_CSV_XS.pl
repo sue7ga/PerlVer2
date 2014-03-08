@@ -49,8 +49,10 @@ while(my $columns = $csv->getline($fh)){
     print "other","\n";
     print $$columns[$year - 1990],"\n";
   }else{
-    encode_utf8("その他ヨーロッパ"),"\n" if $$columns[0] ne 'total';
-    print $$columns[$year - 1990],"\n";
+    if($$columns[0] ne 'total'){
+     encode_utf8("その他ヨーロッパ"),"\n" ;
+     print $$columns[$year - 1990],"\n";
+    } 
   }
 }
 
