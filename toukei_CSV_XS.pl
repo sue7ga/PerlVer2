@@ -42,17 +42,17 @@ while(my $columns = $csv->getline($fh)){
   }elsif($$columns[0] eq 'china'){
     print "china","\n";
     print  $$columns[$year - 1990],"\n";
-  }elsif($$columns[0] eq 'russhian'){
+  }elsif($$columns[0] eq 'russian'){
     print "russhian","\n";
     print  $$columns[$year - 1990],"\n";
-  }elsif($$columns[0] eq 'その他'){
+  }elsif($$columns[0] =~ m/^その他$/){
     print "other","\n";
     print $$columns[$year - 1990],"\n";
   }else{
     if($$columns[0] ne 'total'){
-     encode_utf8("その他ヨーロッパ"),"\n" ;
-     print $$columns[$year - 1990],"\n";
-    } 
+      print encode_utf8("その他ヨーロッパ"),"\n" ;
+      print $$columns[$year - 1990],"\n";
+    }
   }
 }
 
