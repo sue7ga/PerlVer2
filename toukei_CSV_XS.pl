@@ -56,5 +56,4 @@ while(my $columns = $csv->getline($fh)){
   }
 }
 
-
-
+close $fh;
