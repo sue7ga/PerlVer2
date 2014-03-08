@@ -8,11 +8,49 @@ my $csv = Text::CSV_XS->new({binary => 1});
 
 open(my $fh,'<','toukei.csv');
 
-while(my $columns = $csv->getline($fh)){   
-  given($$columns[0]){
-    when('japan'){
-       print 'japan exists!'
-    }
+my $year = 1994;
+print $year,"年","\n";
+
+while(my $columns = $csv->getline($fh)){
+  if($$columns[0] eq 'japan'){
+    print "japan","\n";
+    print  $$columns[$year - 1990],"\n";
+  }elsif($$columns[0] eq 'america'){
+    print "america","\n";
+    print  $$columns[$year - 1990],"\n";
+  }elsif($$columns[0] eq 'german'){
+    print "german","\n";
+    print  $$columns[$year - 1990],"\n";
+  }elsif($$columns[0] eq 'corean'){
+    print "corean","\n";
+    print  $$columns[$year - 1990],"\n";
+  }elsif($$columns[0] eq 'france'){
+    print "france","\n";
+    print  $$columns[$year - 1990],"\n";
+  }elsif($$columns[0] eq 'english'){
+    print "english","\n";
+    print  $$columns[$year - 1990],"\n";
+  }elsif($$columns[0] eq 'italian'){
+    print "italian","\n";
+    print  $$columns[$year - 1990],"\n";
+  }elsif($$columns[0] eq 'canada'){
+    print "canada","\n";
+    print  $$columns[$year - 1990],"\n";
+  }elsif($$columns[0] eq 'australia'){
+    print "australia","\n";
+    print  $$columns[$year - 1990],"\n";
+  }elsif($$columns[0] eq 'china'){
+    print "china","\n";
+    print  $$columns[$year - 1990],"\n";
+  }elsif($$columns[0] eq 'russhian'){
+    print "russhian","\n";
+    print  $$columns[$year - 1990],"\n";
+  }elsif($$columns[0] eq 'その他'){
+    print "other","\n";
+    print $$columns[$year - 1990],"\n";
+  }else{
+    encode_utf8("その他ヨーロッパ"),"\n" if $$columns[0] ne 'total';
+    print $$columns[$year - 1990],"\n";
   }
 }
 
