@@ -16,29 +16,21 @@ my $pattern_re = qr/
   $
 /x;
 
-my $record = {};
-
 foreach my $city (@city_list){
- 
   chomp($city);
-
-  my $area = $1  if $city =~ /(\w+)(県|地方|府|都)/;
-
+  my $area = $1  if $city =~ /^(\w+)(県|地方|府|都)$/;
   my $id;
   my $city;
-
+  my $record = {};
   if($city =~ /$pattern_re/){
       $id = $1;
       $city = $2;
   }
-
-  $record->{$area}->{$id} = $id;
-  $record->{$area}->{$city} = $city;
-
+  $record->{$area}->{id} = $id;
+  $record->{$area}->{city} = $city;
   push @$records,$record;
 }
 
 use Data::Dumper;
-
-print Dumper @$records;
+print Dumper $records;
 
