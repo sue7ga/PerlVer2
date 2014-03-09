@@ -8,8 +8,7 @@ croak "Usage: $0 File" unless defined $file;
 open my $fh,'<',$file or croak "Can't open $file";
 
 my $city_infos = [];
-
-  my $area;
+my $area;
 
 while(my $line = <$fh>){
   chomp $line;
@@ -26,8 +25,7 @@ while(my $line = <$fh>){
 }
 
 use Data::Dumper;
-print Dumper $city_infos;
 
-
+close $fh;
 
 
