@@ -1,18 +1,33 @@
 use strict;
 use warnings;
+use Carp;
 
-my $datafile = "city.txt";
-open(FH,$datafile);
-my @city_list = <FH>;
-my $recores = [];
+my $file = "city.txt";
 
-foreach my $city (@city_list){
-  chomp($city);
-  next if $city =~ /^\n/;
+croak "Usage: $0 File" unless defined $file;
+
+open my $fh,'<',$file or croak "Can't open $file";
+
+my $city_infos = {};
+
+while(my $line = <$fh>){
+  chomp $line;
+  next if $line =~ /^\n/;
+  my $city_info = {};
+  my ($id,$city) = split/：/,$line;
   my $area;
-  if($city =~ /^([^：])$/){
-    $area = $1;
+  if(!defined $city){
+    $area = $id;
+    next;
   }
-  print $area,"\n";
+  $city_info->{$area}->{id}   = $id;
+  $city_info->{$area}->{city} = $city;
+  push @$city_infos,$city_info;
 }
+
+use Data::Dumper;
+print Dumper $city_infos;
+
+
+
 
