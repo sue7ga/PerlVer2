@@ -3,19 +3,19 @@ use warnings;
 use Carp;
 
 my $file = "city.txt";
-
 croak "Usage: $0 File" unless defined $file;
 
 open my $fh,'<',$file or croak "Can't open $file";
 
-my $city_infos = {};
+my $city_infos = [];
+
+  my $area;
 
 while(my $line = <$fh>){
   chomp $line;
-  next if $line =~ /^\n/;
+  next unless $line;
   my $city_info = {};
   my ($id,$city) = split/：/,$line;
-  my $area;
   if(!defined $city){
     $area = $id;
     next;
