@@ -13,8 +13,12 @@ foreach my $element(@types){
     my $answer = <STDIN>;
     chomp($answer);
     chomp($element);
-    if($answer =~ m/\Q$element\E/){
+    if($answer eq $element){
          $correct++;
+    }else{
+       print "Your answer is mistake!","\n"; 
+       print "Please answer your answer again","\n";
+       redo;
     }
 }
 
