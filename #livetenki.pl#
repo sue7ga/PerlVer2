@@ -1,0 +1,20 @@
+use strict;
+use warnings;
+use JSON;
+use WebService::Simple;
+use utf8;
+use Encode qw/encode_utf8 decode_utf8/;
+
+use constant BASEURL => 'http://weather.livedoor.com/forecast/webservice/json/v1';
+
+my $ua = LWP::UserAgent->new;
+
+my $response = $ua->get($url);
+
+
+if($response->is_success){
+  my $res = decode_utf8($response->{_c
+
+}else{
+
+}
