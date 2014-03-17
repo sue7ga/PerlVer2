@@ -1,23 +1,27 @@
 use strict;
 use warnings;
 
-  my %HoH;
+my $info = {};
+my $prefecture;
 
-while(<DATA>){
-  if($_ =~ /^(.+)(県|都|府|地方)$/){
-     my $who = $1;
-  }
-  my $rec = {};
-  for my $field(split){
-     my $key;
-     my $value;
-    ($key,$value) = split /=/,$field;
-     $HoH{$who}{$key} = $value;
-  }
+while(my $data = <DATA>){
+
+ my $id;
+ my $city;
+
+ if($data =~ /^(.+?)(県|地方|府|都)$/){
+   $prefecture = $1;
+ }else{
+  ($id,$city) = split /：/,$data;
+ }
+ 
+ $info->{$prefecture}{id} = $id;
+ $info->{$prefecture}{city} = $city;
+
 }
 
 use Data::Dumper;
-print Dumper %HoH;
+print Dumper $info;
 
 
 __DATA__
