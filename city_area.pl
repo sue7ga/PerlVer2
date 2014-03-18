@@ -5,13 +5,11 @@ my $prefecture;
 my $infos = {};
 
 while(my $data = <DATA>){
-
+ chomp($data);
  if($data =~ /^(\D+?)(県|地方|府|都)$/){
    $prefecture = $1;
  }else{
    my($id,$city) = split /：/,$data;
-   chomp($city);
-   chomp($id);
    my %city = (city=> $city,id=>$id);
    push @{$infos->{$prefecture}},\%city;
  }
