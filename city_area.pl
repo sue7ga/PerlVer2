@@ -10,6 +10,8 @@ while(my $data = <DATA>){
    $prefecture = $1;
  }else{
    my($id,$city) = split /：/,$data;
+   chomp($city);
+   chomp($id);
    my %city = (city=> $city,id=>$id);
    push @{$infos->{$prefecture}},\%city;
  }
