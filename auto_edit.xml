@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<conf>
+  <home-dir>c:/stat</home-dir>
+  <script-dir>script</script-dir>
+  <log-dir>log</log-dir>
+  <edit-logs>
+   <cpu script="cpu_edit.pl"
+        target="cpu/original/cpu_*.log"
+        to="cpu/edit" />
+   <memory script="memory_edit.pl"
+           target="memory/original/memory_*.log"
+           to="memory/edit" />
+   </edit-logs>
+</conf>
